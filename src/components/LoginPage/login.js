@@ -1,9 +1,14 @@
 import {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {
   LoginContainer,
   CustomContainer,
   CustomParagraph,
+  CustomLabel,
+  CustomInput,
+  CheckboxContainer,
+  CustomButton,
 } from './styledComponents'
 
 class LoginPage extends Component {
@@ -37,6 +42,8 @@ class LoginPage extends Component {
   // success api
   successApi = jwtToken => {
     Cookies.set('jwt_token', jwtToken, {expires: 30})
+    const {history} = this.props
+    history.replace('/')
   }
 
   // failure api
@@ -64,6 +71,10 @@ class LoginPage extends Component {
   render() {
     const {typeStatus, errorMsg} = this.state
     console.log(errorMsg)
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken !== undefined) {
+      return <Redirect to="/" />
+    }
     return (
       <LoginContainer>
         <CustomContainer>
@@ -71,29 +82,31 @@ class LoginPage extends Component {
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
             alt="logo"
           />
-          <label htmlFor="username">USERNAME</label>
-          <input
+          <CustomLabel htmlFor="username">USERNAME</CustomLabel>
+          <CustomInput
             type="text"
             id="username"
             onChange={this.getUsername}
             placeholder="Username"
           />
-          <label htmlFor="passWord">PASSWORD</label>
-          <input
+          <CustomLabel htmlFor="passWord">PASSWORD</CustomLabel>
+          <CustomInput
             type={typeStatus}
             id="passWord"
             onChange={this.getPassword}
             placeholder="Password"
           />
-          <input
-            type="checkbox"
-            id="showPassword"
-            onClick={this.togglePassword}
-          />
-          <label htmlFor="showPassword">show password</label>
-          <button type="button" onClick={this.submitUserCredentials}>
+          <CheckboxContainer>
+            <input
+              type="checkbox"
+              id="showPassword"
+              onClick={this.togglePassword}
+            />
+            <label htmlFor="showPassword">show password</label>
+          </CheckboxContainer>
+          <CustomButton type="button" onClick={this.submitUserCredentials}>
             Login
-          </button>
+          </CustomButton>
           {errorMsg !== '' && <CustomParagraph>{errorMsg}</CustomParagraph>}
         </CustomContainer>
       </LoginContainer>
