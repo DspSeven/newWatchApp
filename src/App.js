@@ -9,14 +9,24 @@ import './App.css'
 // Replace your cod<LoginPage />
 class App extends Component {
   state = {
-    toggleColor: '',
+    toggleColor: false,
+  }
+
+  themeChanger = () => {
+    console.log('hi')
+    this.setState(prevState => ({
+      toggleColor: !prevState.toggleColor,
+    }))
   }
 
   render() {
     const {toggleColor} = this.state
+    console.log(toggleColor)
     return (
       <BrowserRouter>
-        <NxtWatch.Provider value={toggleColor}>
+        <NxtWatch.Provider
+          value={{toggleColor, colorChange: this.themeChanger}}
+        >
           <Switch>
             <Route exact path="/login" component={LoginPage} />
             <ProtectedRoute exact path="/" component={HomePage} />
