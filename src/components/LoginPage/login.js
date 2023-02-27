@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
+import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
 import {
   LoginContainer,
   CustomContainer,
@@ -72,44 +73,64 @@ class LoginPage extends Component {
     const {typeStatus, errorMsg} = this.state
     console.log(errorMsg)
     const jwtToken = Cookies.get('jwt_token')
+    const lightTheme =
+      'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+    const darkTheme =
+      'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
     }
     return (
-      <LoginContainer>
-        <CustomContainer>
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-            alt="logo"
-          />
-          <CustomLabel htmlFor="username">USERNAME</CustomLabel>
-          <CustomInput
-            type="text"
-            id="username"
-            onChange={this.getUsername}
-            placeholder="Username"
-          />
-          <CustomLabel htmlFor="passWord">PASSWORD</CustomLabel>
-          <CustomInput
-            type={typeStatus}
-            id="passWord"
-            onChange={this.getPassword}
-            placeholder="Password"
-          />
-          <CheckboxContainer>
-            <input
-              type="checkbox"
-              id="showPassword"
-              onClick={this.togglePassword}
-            />
-            <label htmlFor="showPassword">show password</label>
-          </CheckboxContainer>
-          <CustomButton type="button" onClick={this.submitUserCredentials}>
-            Login
-          </CustomButton>
-          {errorMsg !== '' && <CustomParagraph>{errorMsg}</CustomParagraph>}
-        </CustomContainer>
-      </LoginContainer>
+      <NxtWatch.Consumer>
+        {value => {
+          const {toggleColor} = value
+          const theme = toggleColor ? darkTheme : lightTheme
+          return (
+            <LoginContainer bgColor={toggleColor}>
+              <CustomContainer>
+                <img src={theme} alt="website logo" />}
+                <CustomLabel htmlFor="username" label={toggleColor}>
+                  USERNAME
+                </CustomLabel>
+                <CustomInput
+                  type="text"
+                  id="username"
+                  onChange={this.getUsername}
+                  placeholder="Username"
+                />
+                <CustomLabel htmlFor="passWord" label={toggleColor}>
+                  PASSWORD
+                </CustomLabel>
+                <CustomInput
+                  type={typeStatus}
+                  id="passWord"
+                  onChange={this.getPassword}
+                  placeholder="Password"
+                />
+                <CheckboxContainer>
+                  <input
+                    type="checkbox"
+                    id="showPassword"
+                    onClick={this.togglePassword}
+                  />
+                  <CustomLabel htmlFor="showPassword" label={toggleColor} sp>
+                    show password
+                  </CustomLabel>
+                </CheckboxContainer>
+                <CustomButton
+                  type="button"
+                  onClick={this.submitUserCredentials}
+                >
+                  Login
+                </CustomButton>
+                {errorMsg !== '' && (
+                  <CustomParagraph>{errorMsg}</CustomParagraph>
+                )}
+              </CustomContainer>
+            </LoginContainer>
+          )
+        }}
+      </NxtWatch.Consumer>
     )
   }
 }
