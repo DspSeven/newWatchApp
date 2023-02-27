@@ -35,7 +35,7 @@ const HeaderPage = () => (
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
               alt="profile"
             />
-            <HeaderButton type="button">Logout</HeaderButton>
+            <HeaderButton type="button" outline>Logout</HeaderButton>
           </ProfileInfo>
         </HeaderContainer>
       )
