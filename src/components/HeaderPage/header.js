@@ -1,5 +1,13 @@
 import {HiMoon} from 'react-icons/hi'
 import {FiSun} from 'react-icons/fi'
+import {
+  HeaderContainer,
+  ProfileInfo,
+  Image,
+  ProfileImage,
+  HeaderButton,
+} from './styledComponents'
+import './header.css'
 import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
 
 const HeaderPage = () => (
@@ -15,21 +23,21 @@ const HeaderPage = () => (
         'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
       const theme = toggleColor ? darkTheme : lightTheme
       return (
-        <div>
-          <img src={theme} alt="theme" />
-          <>
+        <HeaderContainer bgColor={toggleColor}>
+          <Image src={theme} alt="theme" />
+          <ProfileInfo>
             {toggleColor ? (
-              <FiSun onClick={themeChange} />
+              <FiSun onClick={themeChange} className="sun-icon" />
             ) : (
-              <HiMoon onClick={themeChange} />
+              <HiMoon onClick={themeChange} className="moon-icon" />
             )}
-            <img
+            <ProfileImage
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
               alt="profile"
             />
-            <button type="button">Logout</button>
-          </>
-        </div>
+            <HeaderButton type="button">Logout</HeaderButton>
+          </ProfileInfo>
+        </HeaderContainer>
       )
     }}
   </NxtWatch.Consumer>
