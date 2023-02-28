@@ -11,33 +11,52 @@ import {
   ContactContainer,
   IconImageContainer,
   IconImage,
+  SpanIcon,
 } from './styledComponents'
 import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
-import './filter.css'
+// import './filter.css'
+
+const optionConstants = {
+  home: 'Home',
+  trending: 'Trending',
+  gaming: 'Gaming',
+  savedVideos: 'SavedVideos',
+}
 
 class FilterGroup extends Component {
   render() {
     return (
       <NxtWatch.Consumer>
         {value => {
-          const {toggleColor} = value
+          const {toggleColor, changeOption} = value
+          const navToHome = () => {
+            changeOption(optionConstants.home)
+          }
           return (
             <FilterContainer bgColor={toggleColor}>
               <IconContainer>
-                <HomeContainer>
-                  <AiFillHome className="icon" />
+                <HomeContainer onClick={navToHome}>
+                  <SpanIcon>
+                    <AiFillHome />
+                  </SpanIcon>
                   <IconHeading>Home</IconHeading>
                 </HomeContainer>
                 <HomeContainer>
-                  <FaFirefoxBrowser className="icon" />
+                  <SpanIcon>
+                    <FaFirefoxBrowser />
+                  </SpanIcon>
                   <IconHeading>Trending</IconHeading>
                 </HomeContainer>
                 <HomeContainer>
-                  <SiYoutubegaming className="icon" />
+                  <SpanIcon>
+                    <SiYoutubegaming />
+                  </SpanIcon>
                   <IconHeading>Gaming</IconHeading>
                 </HomeContainer>
                 <HomeContainer>
-                  <RiPlayListAddLine className="icon" />
+                  <SpanIcon>
+                    <RiPlayListAddLine />
+                  </SpanIcon>
                   <IconHeading>Saved Videos</IconHeading>
                 </HomeContainer>
               </IconContainer>
