@@ -44,3 +44,7 @@ export const IconImage = Styled.img`
 height: 30px;
 width: 30px;
 `
+export const SpanIcon = Styled.span`
+height: 25px;
+width: 25px;
+margin-right: 25px;`
