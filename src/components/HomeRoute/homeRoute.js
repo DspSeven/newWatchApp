@@ -12,6 +12,7 @@ import {
   VideoContainer,
   InputContainer,
   HomeRouteContainer,
+  EmptyCase,
 } from './styledComponents'
 import VideosGroup from '../VideosGroup/videos'
 
@@ -19,6 +20,7 @@ const defaultConstants = {
   success: 'SUCCESS',
   failure: 'FAILURE',
   inProgress: 'INPROGRESS',
+  empty: 'Empty',
 }
 
 class HomeRoute extends Component {
@@ -71,42 +73,76 @@ class HomeRoute extends Component {
     return this.failureApi()
   }
 
-  successfulHomeRoute = tc => {
-    console.log('home route')
-    const {hideOrDisplay, videosData} = this.state
+  closeInfo = () => {
+    this.setState(prevState => ({
+      hideOrDisplay: !prevState.hideOrDisplay,
+    }))
+  }
+
+  enterSearchValue = event => {
+    this.setState({searchValue: event.target.value})
+  }
+
+  renderSearch = () => {
+    const {videosData} = this.state
+    const checkLength = videosData.length > 0
+    console.log(checkLength)
+    if (checkLength) {
+      return this.getVideos()
+    }
+    return this.successfulHomeRoute()
+  }
+
+  renderIfSearchNonZero = tc => {
+    const {hideOrDisplay, videosData, searchValue} = this.state
     const lightTheme =
       'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
     const darkTheme =
       'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
     const theme = tc ? darkTheme : lightTheme
     return (
-      <HomeRouteContainer homeColor={tc}>
-        {hideOrDisplay && (
-          <HomeContainer homeColor={tc}>
-            <HomeInfo>
-              <img src={theme} alt="website logo" />
-              <h1>
-                Buy Nxt WatchPremium prepaid plans with
-                <br />
-                upi
-              </h1>
-              <button type="button">GET IT NOW</button>
-            </HomeInfo>
-            <SpanElement onClick={this.closeInfo}>
-              <AiOutlineClose />
-            </SpanElement>
-          </HomeContainer>
-        )}
-        <VideoContainer>
-          <InputContainer>
-            <input type="search" placeholder="Search" />
-            <BiSearchAlt2 />
-          </InputContainer>
-          {videosData.map(video => (
-            <VideosGroup key={video.id} videos={video} />
-          ))}
-        </VideoContainer>
-      </HomeRouteContainer>
+      <>
+        <HomeRouteContainer homeColor={tc}>
+          {hideOrDisplay ? (
+            <HomeContainer homeColor={tc}>
+              <HomeInfo>
+                <img src={theme} alt="website logo" />
+                <h1>
+                  Buy Nxt WatchPremium prepaid plans with
+                  <br />
+                  upi
+                </h1>
+                <button type="button">GET IT NOW</button>
+              </HomeInfo>
+              <SpanElement onClick={this.closeInfo}>
+                <AiOutlineClose />
+              </SpanElement>
+            </HomeContainer>
+          ) : null}
+          <VideoContainer>
+            <InputContainer>
+              <input
+                type="search"
+                placeholder="Search"
+                onChange={this.enterSearchValue}
+                value={searchValue}
+              />
+              <BiSearchAlt2 onClick={this.renderSearch} />
+            </InputContainer>
+            {videosData.map(video => (
+              <VideosGroup key={video.id} videos={video} />
+            ))}
+          </VideoContainer>
+        </HomeRouteContainer>
+      </>
+    )
+  }
+
+  successfulHomeRoute = tc => {
+    const {videosData} = this.state
+    const checkLength = videosData.length > 0
+    return (
+      <>{checkLength ? this.renderIfSearchNonZero(tc) : this.emptyCase()}</>
     )
   }
 
@@ -121,8 +157,27 @@ class HomeRoute extends Component {
     )
   }
 
+  // if search not matches
+  emptyCase = () => {
+    console.log('no-search')
+    return (
+      <EmptyCase>
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+          alt="no videos"
+          height={50}
+          width={50}
+        />
+        <h1>No Search results found</h1>
+        <p>Try different search words or remove filters</p>
+        <button type="button">Retry</button>
+      </EmptyCase>
+    )
+  }
+
   render() {
     const {status} = this.state
+    console.log(status)
     return (
       <NxtWatch.Consumer>
         {value => {
