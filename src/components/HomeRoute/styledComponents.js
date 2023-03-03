@@ -35,3 +35,7 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 padding-top: 25px;`
+
+export const EmptyCase = Styled.div`
+height: 90vh;
+width: 150px;`
