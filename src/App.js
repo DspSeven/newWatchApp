@@ -10,6 +10,7 @@ import './App.css'
 class App extends Component {
   state = {
     toggleColor: false,
+    optionType: 'Home',
   }
 
   themeChanger = () => {
@@ -19,13 +20,22 @@ class App extends Component {
     }))
   }
 
+  changeOption = type => {
+    this.setState({optionType: type})
+  }
+
   render() {
-    const {toggleColor} = this.state
+    const {toggleColor, optionType} = this.state
     console.log(toggleColor)
     return (
       <BrowserRouter>
         <NxtWatch.Provider
-          value={{toggleColor, colorChange: this.themeChanger}}
+          value={{
+            toggleColor,
+            colorChange: this.themeChanger,
+            optionType,
+            changeOption: this.changeOption,
+          }}
         >
           <Switch>
             <Route exact path="/login" component={LoginPage} />
