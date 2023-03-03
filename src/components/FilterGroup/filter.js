@@ -3,6 +3,7 @@ import {AiFillHome} from 'react-icons/ai'
 import {FaFirefoxBrowser} from 'react-icons/fa'
 import {SiYoutubegaming} from 'react-icons/si'
 import {RiPlayListAddLine} from 'react-icons/ri'
+import {Link} from 'react-router-dom'
 import {
   FilterContainer,
   IconContainer,
@@ -14,6 +15,7 @@ import {
   SpanIcon,
 } from './styledComponents'
 import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
+
 // import './filter.css'
 
 const optionConstants = {
@@ -35,12 +37,14 @@ class FilterGroup extends Component {
           return (
             <FilterContainer bgColor={toggleColor}>
               <IconContainer>
-                <HomeContainer onClick={navToHome}>
-                  <SpanIcon>
-                    <AiFillHome />
-                  </SpanIcon>
-                  <IconHeading>Home</IconHeading>
-                </HomeContainer>
+                <Link to="/">
+                  <HomeContainer onClick={navToHome}>
+                    <SpanIcon>
+                      <AiFillHome />
+                    </SpanIcon>
+                    <IconHeading>Home</IconHeading>
+                  </HomeContainer>
+                </Link>
                 <HomeContainer>
                   <SpanIcon>
                     <FaFirefoxBrowser />
