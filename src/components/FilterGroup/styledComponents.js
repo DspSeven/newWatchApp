@@ -20,13 +20,19 @@ align-items: center;
 margin-left: 75px;
 height: 5vh;
 width: 75%;
+background-color: ${props => (props.colorBar ? '#cccccc' : '#ffffff')};
+border: ${props => (props.colorBar ? 1 : null)}px solid;
+padding-left: 25px;
+border-radius: 7px;
+color: ${props => (props.colorBar ? ' #212121' : null)};
 `
 export const IconHeading = Styled.p`
 height: 25px;
 width: 300px;
 font-size: 20px;
 font-weight: 15px;
-font-family: "Roboto";`
+font-family: "Roboto";
+color: '#000000';`
 
 export const ContactContainer = Styled.div`
 display: flex;
@@ -47,4 +53,5 @@ width: 30px;
 export const SpanIcon = Styled.span`
 height: 25px;
 width: 25px;
-margin-right: 25px;`
+margin-right: 25px;
+color: ${props => (props.colorBar ? ' #ff0000' : '#000000')};`
