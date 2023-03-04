@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 import {AiOutlineClose} from 'react-icons/ai'
 import {BiSearchAlt2} from 'react-icons/bi'
 import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
+import FailureScenario from '../FailureScenario/failureApi'
 
 import {
   HomeContainer,
@@ -13,8 +14,12 @@ import {
   InputContainer,
   HomeRouteContainer,
   EmptyCase,
+  CombineContainer,
 } from './styledComponents'
 import VideosGroup from '../VideosGroup/videos'
+
+import HeaderPage from '../HeaderPage/header'
+import FilterGroup from '../FilterGroup/filter'
 
 const defaultConstants = {
   success: 'SUCCESS',
@@ -146,7 +151,11 @@ class HomeRoute extends Component {
     )
   }
 
-  failureHomeRoute = () => {}
+  // to add in futhuer
+  failureHomeRoute = () => {
+    console.log('')
+    return <FailureScenario />
+  }
 
   renderLoader = toggleColor => {
     const renderColor = toggleColor ? '#ffffff' : '#000000'
@@ -175,23 +184,34 @@ class HomeRoute extends Component {
     )
   }
 
-  render() {
+  startSwitch = toggleColor => {
     const {status} = this.state
-    console.log(status)
+    switch (status) {
+      case defaultConstants.success:
+        return this.successfulHomeRoute(toggleColor)
+      case defaultConstants.failure:
+        return this.failureHomeRoute()
+      case defaultConstants.inProgress:
+        return this.renderLoader(toggleColor)
+      default:
+        return null
+    }
+  }
+
+  render() {
     return (
       <NxtWatch.Consumer>
         {value => {
           const {toggleColor} = value
-          switch (status) {
-            case defaultConstants.success:
-              return this.successfulHomeRoute(toggleColor)
-            case defaultConstants.failure:
-              return this.failureHomeRoute()
-            case defaultConstants.inProgress:
-              return this.renderLoader(toggleColor)
-            default:
-              return null
-          }
+          return (
+            <div>
+              <HeaderPage />
+              <CombineContainer>
+                <FilterGroup />
+                {this.startSwitch(toggleColor)}
+              </CombineContainer>
+            </div>
+          )
         }}
       </NxtWatch.Consumer>
     )
