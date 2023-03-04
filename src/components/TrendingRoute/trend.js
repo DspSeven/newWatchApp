@@ -7,6 +7,7 @@ import {CombineContainer, Videos} from './styledComponents'
 import HeaderPage from '../HeaderPage/header'
 import FilterGroup from '../FilterGroup/filter'
 import TrendingVideos from '../TrendingVideos/trendingVideos'
+import FailureScenario from '../FailureScenario/failureApi'
 
 const trendingConstants = {
   success: 'SUCCESS',
@@ -85,7 +86,10 @@ class TrendingRoute extends Component {
   }
 
   // to be added in futher
-  failureRoute = () => {}
+  failureRoute = () => {
+    console.log('')
+    return <FailureScenario />
+  }
 
   startSwitch = () => {
     const {status} = this.state
