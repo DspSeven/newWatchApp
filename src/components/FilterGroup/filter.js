@@ -30,35 +30,52 @@ class FilterGroup extends Component {
     return (
       <NxtWatch.Consumer>
         {value => {
-          const {toggleColor, changeOption} = value
+          const {toggleColor, optionType, changeOption} = value
           const navToHome = () => {
             changeOption(optionConstants.home)
+          }
+          const navToTrending = () => {
+            changeOption(optionConstants.trending)
           }
           return (
             <FilterContainer bgColor={toggleColor}>
               <IconContainer>
                 <Link to="/">
-                  <HomeContainer onClick={navToHome}>
-                    <SpanIcon>
+                  <HomeContainer
+                    onClick={navToHome}
+                    colorBar={optionConstants.home === optionType}
+                  >
+                    <SpanIcon colorBar={optionConstants.home === optionType}>
                       <AiFillHome />
                     </SpanIcon>
                     <IconHeading>Home</IconHeading>
                   </HomeContainer>
                 </Link>
-                <HomeContainer>
-                  <SpanIcon>
-                    <FaFirefoxBrowser />
-                  </SpanIcon>
-                  <IconHeading>Trending</IconHeading>
-                </HomeContainer>
-                <HomeContainer>
-                  <SpanIcon>
+                <Link to="/trending">
+                  <HomeContainer
+                    onClick={navToTrending}
+                    colorBar={optionConstants.trending === optionType}
+                  >
+                    <SpanIcon
+                      colorBar={optionConstants.trending === optionType}
+                    >
+                      <FaFirefoxBrowser />
+                    </SpanIcon>
+                    <IconHeading>Trending</IconHeading>
+                  </HomeContainer>
+                </Link>
+                <HomeContainer colorBar={optionConstants.gaming === optionType}>
+                  <SpanIcon colorBar={optionConstants.gaming === optionType}>
                     <SiYoutubegaming />
                   </SpanIcon>
                   <IconHeading>Gaming</IconHeading>
                 </HomeContainer>
-                <HomeContainer>
-                  <SpanIcon>
+                <HomeContainer
+                  colorBar={optionConstants.savedVideos === optionType}
+                >
+                  <SpanIcon
+                    colorBar={optionConstants.savedVideos === optionType}
+                  >
                     <RiPlayListAddLine />
                   </SpanIcon>
                   <IconHeading>Saved Videos</IconHeading>
