@@ -6,3 +6,6 @@ display: flex;`
 export const Videos = Styled.ul`
 height: 90vh;
 overflow: scroll;`
+
+export const UnorderedList = Styled.ul`
+width: 80%;`
