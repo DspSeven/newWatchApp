@@ -45,3 +45,7 @@ display: flex;`
 
 export const UnOl = Styled.ul`
 width: 80%;`
+
+export const HomeUnorderedList = Styled.ul`
+display: flex;
+flex-wrap: wrap;`
