@@ -1,4 +1,10 @@
 import {formatDistanceToNow} from 'date-fns'
+import {
+  TrendList,
+  ThumbnailImage,
+  TrendingInfo,
+  Heading,
+} from './styledComponents'
 
 const TrendingVideos = props => {
   const {trendingData} = props
@@ -8,15 +14,15 @@ const TrendingVideos = props => {
   const date = new Date(publishedAt).getFullYear()
   const newDate = formatDistanceToNow(new Date(year, month, date))
   return (
-    <div>
-      <img src={thumbnailUrl} alt="url" />
-      <div>
-        <h1>{title}</h1>
+    <TrendList>
+      <ThumbnailImage src={thumbnailUrl} alt="url" />
+      <TrendingInfo>
+        <Heading>{title}</Heading>
         <p>{name}</p>
         <p>{viewCount} views</p>
         <p>{newDate} ago</p>
-      </div>
-    </div>
+      </TrendingInfo>
+    </TrendList>
   )
 }
 export default TrendingVideos
