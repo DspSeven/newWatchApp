@@ -2,7 +2,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {FaFirefoxBrowser} from 'react-icons/fa'
-import {CombineContainer, Videos} from './styledComponents'
+import {CombineContainer, Videos, UnorderedList} from './styledComponents'
 
 import HeaderPage from '../HeaderPage/header'
 import FilterGroup from '../FilterGroup/filter'
@@ -62,7 +62,7 @@ class TrendingRoute extends Component {
     console.log('')
     return (
       <div className="loader-container" data-testid="loader">
-        <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+        <Loader type="ThreeDots" color="#000000" height="50" width="50" />
       </div>
     )
   }
@@ -71,7 +71,7 @@ class TrendingRoute extends Component {
   successRoute = () => {
     const {trendingVideosData} = this.state
     return (
-      <div>
+      <UnorderedList>
         <div>
           <span>
             <FaFirefoxBrowser />
@@ -81,7 +81,7 @@ class TrendingRoute extends Component {
         {trendingVideosData.map(data => (
           <TrendingVideos trendingData={data} key={data.id} />
         ))}
-      </div>
+      </UnorderedList>
     )
   }
 
