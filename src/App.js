@@ -2,7 +2,9 @@ import {Component} from 'react'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import NxtWatch from './context/NxtWatch/nxtWatchContext'
 import LoginPage from './components/LoginPage/login'
-import HomePage from './components/HomePage/home'
+import HomeRoute from './components/HomeRoute/homeRoute'
+import TrendingRoute from './components/TrendingRoute/trend'
+import GamingRoute from './components/GamingRoute/gaming'
 import ProtectedRoute from './components/ProtectedRoute/protectedRoute'
 import './App.css'
 
@@ -39,7 +41,9 @@ class App extends Component {
         >
           <Switch>
             <Route exact path="/login" component={LoginPage} />
-            <ProtectedRoute exact path="/" component={HomePage} />
+            <ProtectedRoute exact path="/" component={HomeRoute} />
+            <ProtectedRoute exact path="/trending" component={TrendingRoute} />
+            <ProtectedRoute exact path="/gaming" component={GamingRoute} />
           </Switch>
         </NxtWatch.Provider>
       </BrowserRouter>
