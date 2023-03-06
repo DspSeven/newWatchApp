@@ -39,3 +39,9 @@ padding-top: 25px;`
 export const EmptyCase = Styled.div`
 height: 90vh;
 width: 150px;`
+
+export const CombineContainer = Styled.div`
+display: flex;`
+
+export const UnOl = Styled.ul`
+width: 80%;`
