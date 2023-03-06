@@ -2,7 +2,12 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {FaFirefoxBrowser} from 'react-icons/fa'
-import {CombineContainer, Videos, UnorderedList} from './styledComponents'
+import {
+  CombineContainer,
+  Videos,
+  UnorderedList,
+  TrendUnorderedList,
+} from './styledComponents'
 
 import HeaderPage from '../HeaderPage/header'
 import FilterGroup from '../FilterGroup/filter'
@@ -78,9 +83,11 @@ class TrendingRoute extends Component {
           </span>
           <h1>Trending</h1>
         </div>
-        {trendingVideosData.map(data => (
-          <TrendingVideos trendingData={data} key={data.id} />
-        ))}
+        <TrendUnorderedList>
+          {trendingVideosData.map(data => (
+            <TrendingVideos trendingData={data} key={data.id} />
+          ))}
+        </TrendUnorderedList>
       </UnorderedList>
     )
   }
