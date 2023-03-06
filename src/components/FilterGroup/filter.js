@@ -37,6 +37,9 @@ class FilterGroup extends Component {
           const navToTrending = () => {
             changeOption(optionConstants.trending)
           }
+          const navToGaming = () => {
+            changeOption(optionConstants.gaming)
+          }
           return (
             <FilterContainer bgColor={toggleColor}>
               <IconContainer>
@@ -64,12 +67,17 @@ class FilterGroup extends Component {
                     <IconHeading>Trending</IconHeading>
                   </HomeContainer>
                 </Link>
-                <HomeContainer colorBar={optionConstants.gaming === optionType}>
-                  <SpanIcon colorBar={optionConstants.gaming === optionType}>
-                    <SiYoutubegaming />
-                  </SpanIcon>
-                  <IconHeading>Gaming</IconHeading>
-                </HomeContainer>
+                <Link to="/gaming">
+                  <HomeContainer
+                    onClick={navToGaming}
+                    colorBar={optionConstants.gaming === optionType}
+                  >
+                    <SpanIcon colorBar={optionConstants.gaming === optionType}>
+                      <SiYoutubegaming />
+                    </SpanIcon>
+                    <IconHeading>Gaming</IconHeading>
+                  </HomeContainer>
+                </Link>
                 <HomeContainer
                   colorBar={optionConstants.savedVideos === optionType}
                 >
