@@ -16,6 +16,7 @@ import {
   EmptyCase,
   CombineContainer,
   UnOl,
+  HomeUnorderedList,
 } from './styledComponents'
 import VideosGroup from '../VideosGroup/videos'
 
@@ -135,9 +136,11 @@ class HomeRoute extends Component {
               />
               <BiSearchAlt2 onClick={this.renderSearch} />
             </InputContainer>
-            {videosData.map(video => (
-              <VideosGroup key={video.id} videos={video} />
-            ))}
+            <HomeUnorderedList>
+              {videosData.map(video => (
+                <VideosGroup key={video.id} videos={video} />
+              ))}
+            </HomeUnorderedList>
           </VideoContainer>
         </HomeRouteContainer>
       </>
