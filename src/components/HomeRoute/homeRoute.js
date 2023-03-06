@@ -1,8 +1,8 @@
 import {Component} from 'react'
-import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import {AiOutlineClose} from 'react-icons/ai'
 import {BiSearchAlt2} from 'react-icons/bi'
+import RenderLoader from '../RenderLoader/loader'
 import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
 import FailureScenario from '../FailureScenario/failureApi'
 
@@ -15,6 +15,7 @@ import {
   HomeRouteContainer,
   EmptyCase,
   CombineContainer,
+  UnOl,
 } from './styledComponents'
 import VideosGroup from '../VideosGroup/videos'
 
@@ -147,7 +148,9 @@ class HomeRoute extends Component {
     const {videosData} = this.state
     const checkLength = videosData.length > 0
     return (
-      <>{checkLength ? this.renderIfSearchNonZero(tc) : this.emptyCase()}</>
+      <UnOl>
+        {checkLength ? this.renderIfSearchNonZero(tc) : this.emptyCase()}
+      </UnOl>
     )
   }
 
@@ -157,13 +160,9 @@ class HomeRoute extends Component {
     return <FailureScenario />
   }
 
-  renderLoader = toggleColor => {
-    const renderColor = toggleColor ? '#ffffff' : '#000000'
-    return (
-      <div className="loader-container" data-testid="loader">
-        <Loader type="ThreeDots" color={renderColor} height="50" width="50" />
-      </div>
-    )
+  renderLoader = () => {
+    console.log('')
+    return <RenderLoader />
   }
 
   // if search not matches
@@ -192,7 +191,7 @@ class HomeRoute extends Component {
       case defaultConstants.failure:
         return this.failureHomeRoute()
       case defaultConstants.inProgress:
-        return this.renderLoader(toggleColor)
+        return this.renderLoader()
       default:
         return null
     }
