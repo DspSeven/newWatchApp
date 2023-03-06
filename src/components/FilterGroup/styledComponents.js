@@ -11,7 +11,8 @@ overflow: ${props => (props.bgColor ? 'scroll' : 'hidden')};
 background-color: ${props => (props.bgColor ? '#000000' : '#ffffff')};`
 
 export const IconContainer = Styled.div`
-align-self: center;`
+align-self: center;
+padding-right: 25px;`
 
 export const HomeContainer = Styled.div`
 display: flex;
