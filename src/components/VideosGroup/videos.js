@@ -1,4 +1,10 @@
 import {formatDistanceToNow} from 'date-fns'
+import {
+  HomeVideoContainer,
+  PlayerInfo,
+  ThumbnailImage,
+  Heading,
+} from './styledComponents'
 
 const VideosGroup = props => {
   const {videos} = props
@@ -9,19 +15,19 @@ const VideosGroup = props => {
   const newDate = formatDistanceToNow(new Date(publishedAt))
   console.log(newDate)
   return (
-    <div>
-      <img src={thumbnailUrl} alt={title} />
-      <div>
-        <img src={profileImageUrl} alt={name} />
+    <HomeVideoContainer>
+      <ThumbnailImage src={thumbnailUrl} alt={title} />
+      <PlayerInfo>
+        <img src={profileImageUrl} alt={name} height={60} width={60} />
         <div>
-          <h1>{title}</h1>
+          <Heading>{title}</Heading>
           <p>{name}</p>
           <div>
             <p>{viewCount} views</p>
           </div>
         </div>
-      </div>
-    </div>
+      </PlayerInfo>
+    </HomeVideoContainer>
   )
 }
 export default VideosGroup
