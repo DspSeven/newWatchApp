@@ -5,6 +5,7 @@ import LoginPage from './components/LoginPage/login'
 import HomeRoute from './components/HomeRoute/homeRoute'
 import TrendingRoute from './components/TrendingRoute/trend'
 import GamingRoute from './components/GamingRoute/gaming'
+import VideoItemDetails from './components/VideoItemDetails/videoItemDetail'
 import ProtectedRoute from './components/ProtectedRoute/protectedRoute'
 import './App.css'
 
@@ -28,7 +29,7 @@ class App extends Component {
 
   render() {
     const {toggleColor, optionType} = this.state
-    console.log(toggleColor)
+    console.log(optionType)
     return (
       <BrowserRouter>
         <NxtWatch.Provider
@@ -44,6 +45,11 @@ class App extends Component {
             <ProtectedRoute exact path="/" component={HomeRoute} />
             <ProtectedRoute exact path="/trending" component={TrendingRoute} />
             <ProtectedRoute exact path="/gaming" component={GamingRoute} />
+            <ProtectedRoute
+              exact
+              path="/videos/:id"
+              component={VideoItemDetails}
+            />
           </Switch>
         </NxtWatch.Provider>
       </BrowserRouter>
