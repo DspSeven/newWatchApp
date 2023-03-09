@@ -12,6 +12,7 @@ import FilterGroup from '../FilterGroup/filter'
 class VideoItemDetails extends Component {
   state = {
     videoItemInfo: {},
+    channel: {},
   }
 
   componentDidMount() {
@@ -34,11 +35,6 @@ class VideoItemDetails extends Component {
     const data = await response.json()
     console.log(data)
     const updatedData = {
-      channel: {
-        name: data.video_details.channel.name,
-        profileImageUrl: data.video_details.channel.profile_image_url,
-        subscriberCount: data.video_details.channel.subscriber_count,
-      },
       description: data.video_details.description,
       id: data.video_details.id,
       publishedAt: data.video_details.published_at,
@@ -48,11 +44,18 @@ class VideoItemDetails extends Component {
       viewCount: data.video_details.view_count,
     }
     console.log(updatedData)
-    this.setState({videoItemInfo: updatedData})
+    this.setState({
+      videoItemInfo: updatedData,
+      channel: {
+        name: data.video_details.channel.name,
+        profileImageUrl: data.video_details.channel.profile_image_url,
+        subscriberCount: data.video_details.channel.subscriber_count,
+      },
+    })
   }
 
   render() {
-    const {videoItemInfo} = this.state
+    const {videoItemInfo, channel} = this.state
     const {
       description,
       id,
@@ -62,7 +65,7 @@ class VideoItemDetails extends Component {
       videoUrl,
       viewCount,
     } = videoItemInfo
-    const {channel} = videoItemInfo
+    const {name, profileImageUrl, subscriberCount} = channel
     console.log(channel)
     return (
       <div>
@@ -103,9 +106,9 @@ class VideoItemDetails extends Component {
           <div>
             <img src={thumbnailUrl} alt={title} height={60} width={60} />
             <div>
-              <h1>{channel.name}</h1>
-              <p>{channel.profileImageUrl}</p>
-              <p>{channel.subscriberCount} subscribers</p>
+              <h1>{name}</h1>
+              <p>{profileImageUrl}</p>
+              <p>{subscriberCount} subscribers</p>
             </div>
             <p>{description}</p>
           </div>
