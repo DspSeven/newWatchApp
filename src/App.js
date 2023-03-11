@@ -14,6 +14,7 @@ class App extends Component {
   state = {
     toggleColor: false,
     optionType: 'Home',
+    savedVideos: [],
   }
 
   themeChanger = () => {
@@ -27,9 +28,15 @@ class App extends Component {
     this.setState({optionType: type})
   }
 
+  saveVideo = obj => {
+    this.setState(prevState => ({
+      savedVideos: [...prevState.savedVideos, obj],
+    }))
+  }
+
   render() {
-    const {toggleColor, optionType} = this.state
-    console.log(optionType)
+    const {toggleColor, optionType, savedVideos} = this.state
+    console.log(savedVideos)
     return (
       <BrowserRouter>
         <NxtWatch.Provider
@@ -38,6 +45,8 @@ class App extends Component {
             colorChange: this.themeChanger,
             optionType,
             changeOption: this.changeOption,
+            savedVideos,
+            saveVideo: this.saveVideo,
           }}
         >
           <Switch>
