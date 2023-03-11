@@ -90,7 +90,7 @@ class VideoItemDetails extends Component {
     return this.setState({status: specificJobConstants.failure})
   }
 
-  successApi = () => {
+  successApi = saveVideo => {
     const {
       videoItemInfo,
       channel,
@@ -131,7 +131,10 @@ class VideoItemDetails extends Component {
     }
 
     const saveVideoInList = () => {
+      saveVideo({id, thumbnailUrl, name, viewCount, newDate})
+      /*
       this.setState({savedVideos: {id, thumbnailUrl, name, viewCount, newDate}})
+    */
     }
 
     return (
@@ -167,7 +170,7 @@ class VideoItemDetails extends Component {
                   <SpanTwo onClick={saveVideoInList} colorChange={playList}>
                     <RiPlayListAddFill />
                   </SpanTwo>
-                  <p>Save</p>
+                  <LikeContent like={playList}>Save</LikeContent>
                 </LikeContainer>
               </LDS>
             </VideoInfo>
@@ -196,11 +199,11 @@ class VideoItemDetails extends Component {
     return <RenderLoader />
   }
 
-  startSwitch = () => {
+  startSwitch = saveVideo => {
     const {status} = this.state
     switch (status) {
       case specificJobConstants.success:
-        return this.successApi()
+        return this.successApi(saveVideo)
       case specificJobConstants.failure:
         return this.failureApi()
       case specificJobConstants.inProgress:
@@ -211,20 +214,16 @@ class VideoItemDetails extends Component {
   }
 
   render() {
-    const {savedVideos} = this.state
     return (
       <NxtWatch.Consumer>
         {value => {
           const {saveVideo} = value
-          if (Object.keys(savedVideos).length > 0) {
-            saveVideo(savedVideos)
-          }
           return (
             <div>
               <HeaderPage />
               <CombineContainer>
                 <FilterGroup />
-                {this.startSwitch()}
+                {this.startSwitch(saveVideo)}
               </CombineContainer>
             </div>
           )
