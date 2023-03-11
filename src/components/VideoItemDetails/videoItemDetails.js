@@ -212,12 +212,11 @@ class VideoItemDetails extends Component {
 
   render() {
     const {savedVideos} = this.state
-    const emptyObject = {}
     return (
       <NxtWatch.Consumer>
         {value => {
           const {saveVideo} = value
-          if (savedVideos !== emptyObject) {
+          if (Object.keys(savedVideos).length > 0) {
             saveVideo(savedVideos)
           }
           return (
