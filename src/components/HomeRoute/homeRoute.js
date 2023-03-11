@@ -108,42 +108,40 @@ class HomeRoute extends Component {
       'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
     const theme = tc ? darkTheme : lightTheme
     return (
-      <>
-        <HomeRouteContainer homeColor={tc}>
-          {hideOrDisplay ? (
-            <HomeContainer homeColor={tc}>
-              <HomeInfo>
-                <img src={theme} alt="website logo" />
-                <h1>
-                  Buy Nxt WatchPremium prepaid plans with
-                  <br />
-                  upi
-                </h1>
-                <button type="button">GET IT NOW</button>
-              </HomeInfo>
-              <SpanElement onClick={this.closeInfo}>
-                <AiOutlineClose />
-              </SpanElement>
-            </HomeContainer>
-          ) : null}
-          <VideoContainer>
-            <InputContainer>
-              <input
-                type="search"
-                placeholder="Search"
-                onChange={this.enterSearchValue}
-                value={searchValue}
-              />
-              <BiSearchAlt2 onClick={this.renderSearch} />
-            </InputContainer>
-            <HomeUnorderedList>
-              {videosData.map(video => (
-                <VideosGroup key={video.id} videos={video} />
-              ))}
-            </HomeUnorderedList>
-          </VideoContainer>
-        </HomeRouteContainer>
-      </>
+      <HomeRouteContainer homeColor={tc}>
+        {hideOrDisplay ? (
+          <HomeContainer homeColor={tc}>
+            <HomeInfo>
+              <img src={theme} alt="website logo" />
+              <h1>
+                Buy Nxt WatchPremium prepaid plans with
+                <br />
+                upi
+              </h1>
+              <button type="button">GET IT NOW</button>
+            </HomeInfo>
+            <SpanElement onClick={this.closeInfo}>
+              <AiOutlineClose />
+            </SpanElement>
+          </HomeContainer>
+        ) : null}
+        <VideoContainer>
+          <InputContainer>
+            <input
+              type="search"
+              placeholder="Search"
+              onChange={this.enterSearchValue}
+              value={searchValue}
+            />
+            <BiSearchAlt2 onClick={this.renderSearch} />
+          </InputContainer>
+          <HomeUnorderedList>
+            {videosData.map(video => (
+              <VideosGroup key={video.id} videos={video} />
+            ))}
+          </HomeUnorderedList>
+        </VideoContainer>
+      </HomeRouteContainer>
     )
   }
 
@@ -151,7 +149,7 @@ class HomeRoute extends Component {
     const {videosData} = this.state
     const checkLength = videosData.length > 0
     return (
-      <UnOl>
+      <UnOl colorChange={tc}>
         {checkLength ? this.renderIfSearchNonZero(tc) : this.emptyCase()}
       </UnOl>
     )
