@@ -42,9 +42,23 @@ color: ${props => (props.two ? '#4f46e5' : '#ffffff')};`
 
 export const VideoAdditionalInfo = Styled.div`
 display: flex;
-justify-content: space-between;
 align-items: center;
-line-height: 5px;`
+line-height: 10px;`
 
 export const LikeContent = Styled.p`
 color: ${props => (props.like ? '#4f46e5' : '#ffffff')};`
+
+export const SpecificContainer = Styled.div`
+width: 80%;
+overflow: scroll;
+height: 90vh;`
+
+export const Container = Styled.div`
+font-size: 20px;
+padding-left: 50px;`
+
+export const Heading = Styled.h1`
+font-size: 20px;
+`
+export const Paragraph = Styled.p`
+font-size: 15px;`
