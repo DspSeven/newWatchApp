@@ -21,7 +21,12 @@ import {
   SpanTwo,
   SpanThree,
   LikeContent,
+  SpecificContainer,
+  Container,
+  Heading,
+  Paragraph,
 } from './styledComponents'
+import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
 
 const specificJobConstants = {
   success: 'SUCCESS',
@@ -126,10 +131,11 @@ class VideoItemDetails extends Component {
     }
 
     const saveVideoInList = () => {
-      this.setState({savedVideos: {thumbnailUrl, name, viewCount, newDate}})
+      this.setState({savedVideos: {id, thumbnailUrl, name, viewCount, newDate}})
     }
+
     return (
-      <div>
+      <SpecificContainer>
         <div>
           <div>
             <ReactPlayer
@@ -169,14 +175,14 @@ class VideoItemDetails extends Component {
           </div>
           <VideoAdditionalInfo>
             <img src={profileImageUrl} alt={title} height={60} width={60} />
-            <div>
-              <h1>{name}</h1>
-              <p>{subscriberCount} subscribers</p>
-            </div>
-            <p>{description}</p>
+            <Container>
+              <Heading>{name}</Heading>
+              <Paragraph>{subscriberCount} subscribers</Paragraph>
+              <Paragraph>{description}</Paragraph>
+            </Container>
           </VideoAdditionalInfo>
         </div>
-      </div>
+      </SpecificContainer>
     )
   }
 
@@ -205,14 +211,26 @@ class VideoItemDetails extends Component {
   }
 
   render() {
+    const {savedVideos} = this.state
+    const emptyObject = {}
     return (
-      <div>
-        <HeaderPage />
-        <CombineContainer>
-          <FilterGroup />
-          {this.startSwitch()}
-        </CombineContainer>
-      </div>
+      <NxtWatch.Consumer>
+        {value => {
+          const {saveVideo} = value
+          if (savedVideos !== emptyObject) {
+            saveVideo(savedVideos)
+          }
+          return (
+            <div>
+              <HeaderPage />
+              <CombineContainer>
+                <FilterGroup />
+                {this.startSwitch()}
+              </CombineContainer>
+            </div>
+          )
+        }}
+      </NxtWatch.Consumer>
     )
   }
 }
