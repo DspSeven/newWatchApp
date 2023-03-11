@@ -40,6 +40,9 @@ class FilterGroup extends Component {
           const navToGaming = () => {
             changeOption(optionConstants.gaming)
           }
+          const navToSavedVideos = () => {
+            changeOption(optionConstants.savedVideos)
+          }
           return (
             <FilterContainer bgColor={toggleColor}>
               <IconContainer>
@@ -78,16 +81,19 @@ class FilterGroup extends Component {
                     <IconHeading>Gaming</IconHeading>
                   </HomeContainer>
                 </Link>
-                <HomeContainer
-                  colorBar={optionConstants.savedVideos === optionType}
-                >
-                  <SpanIcon
+                <Link to="/saved-videos">
+                  <HomeContainer
+                    onClick={navToSavedVideos}
                     colorBar={optionConstants.savedVideos === optionType}
                   >
-                    <RiPlayListAddLine />
-                  </SpanIcon>
-                  <IconHeading>Saved Videos</IconHeading>
-                </HomeContainer>
+                    <SpanIcon
+                      colorBar={optionConstants.savedVideos === optionType}
+                    >
+                      <RiPlayListAddLine />
+                    </SpanIcon>
+                    <IconHeading>Saved Videos</IconHeading>
+                  </HomeContainer>
+                </Link>
               </IconContainer>
               <ContactContainer>
                 <IconHeading>Contact Us</IconHeading>
