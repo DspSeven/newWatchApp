@@ -6,6 +6,7 @@ import HomeRoute from './components/HomeRoute/homeRoute'
 import TrendingRoute from './components/TrendingRoute/trend'
 import GamingRoute from './components/GamingRoute/gaming'
 import VideoItemDetails from './components/VideoItemDetails/videoItemDetail'
+import SavedVideosRoute from './components/SavedVideosRoute/savedVideosRoute'
 import ProtectedRoute from './components/ProtectedRoute/protectedRoute'
 import './App.css'
 
@@ -14,7 +15,7 @@ class App extends Component {
   state = {
     toggleColor: false,
     optionType: 'Home',
-    savedVideos: [],
+    savedVideos: '',
   }
 
   themeChanger = () => {
@@ -29,6 +30,7 @@ class App extends Component {
   }
 
   saveVideo = obj => {
+    console.log(obj)
     this.setState(prevState => ({
       savedVideos: [...prevState.savedVideos, obj],
     }))
@@ -54,6 +56,11 @@ class App extends Component {
             <ProtectedRoute exact path="/" component={HomeRoute} />
             <ProtectedRoute exact path="/trending" component={TrendingRoute} />
             <ProtectedRoute exact path="/gaming" component={GamingRoute} />
+            <ProtectedRoute
+              exact
+              path="/saved-videos"
+              component={SavedVideosRoute}
+            />
             <ProtectedRoute
               exact
               path="/videos/:id"
