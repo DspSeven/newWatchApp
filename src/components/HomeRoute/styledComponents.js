@@ -6,8 +6,8 @@ justify-content: center;
 align-items: flex-start;
 background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
 background-size: cover;
-width: 100%;
-padding-right: 650px;
+width: 100vw;
+padding-right: 500px;
 background-color: ${props => (props.homeColor ? '#0f0f0f' : '#f9f9f9')};
 `
 
@@ -41,10 +41,12 @@ height: 90vh;
 width: 150px;`
 
 export const CombineContainer = Styled.div`
-display: flex;`
+display: flex;
+height: 90vh;`
 
 export const UnOl = Styled.ul`
-width: 80%;`
+width: 80%;
+background-color: ${props => (props.colorChange ? '#0f0f0f' : '#f9f9f9')}`
 
 export const HomeUnorderedList = Styled.ul`
 display: flex;
