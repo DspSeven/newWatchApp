@@ -8,6 +8,8 @@ import FailureScenario from '../FailureScenario/failureApi'
 import RenderLoader from '../RenderLoader/loader'
 import {CombineContainer, UnorderedList} from './styledComponents'
 
+import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
+
 const gameConstants = {
   success: 'SUCCESS',
   failure: 'FAILURE',
@@ -52,10 +54,10 @@ class GamingRoute extends Component {
   }
 
   // success api
-  successApi = () => {
+  successApi = toggleColor => {
     const {gamingVideosData} = this.state
     return (
-      <UnorderedList>
+      <UnorderedList colorChange={toggleColor}>
         {gamingVideosData.map(data => (
           <GamingVideosSection gd={data} key={data.id} />
         ))}
@@ -73,11 +75,11 @@ class GamingRoute extends Component {
     return <RenderLoader />
   }
 
-  startSwitch = () => {
+  startSwitch = toggleColor => {
     const {gamingStatus} = this.state
     switch (gamingStatus) {
       case gameConstants.success:
-        return this.successApi()
+        return this.successApi(toggleColor)
       case gameConstants.failure:
         return this.failureApi()
       case gameConstants.inProgress:
@@ -89,13 +91,20 @@ class GamingRoute extends Component {
 
   render() {
     return (
-      <div>
-        <HeaderPage />
-        <CombineContainer>
-          <FilterGroup />
-          {this.startSwitch()}
-        </CombineContainer>
-      </div>
+      <NxtWatch.Consumer>
+        {value => {
+          const {toggleColor} = value
+          return (
+            <div data-testid="gaming">
+              <HeaderPage />
+              <CombineContainer>
+                <FilterGroup />
+                {this.startSwitch(toggleColor)}
+              </CombineContainer>
+            </div>
+          )
+        }}
+      </NxtWatch.Consumer>
     )
   }
 }
