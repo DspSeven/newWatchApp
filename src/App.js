@@ -5,9 +5,10 @@ import LoginPage from './components/LoginPage/login'
 import HomeRoute from './components/HomeRoute/homeRoute'
 import TrendingRoute from './components/TrendingRoute/trend'
 import GamingRoute from './components/GamingRoute/gaming'
-import VideoItemDetails from './components/VideoItemDetails/videoItemDetail'
+import VideoItemDetails from './components/VideoItemDetails/videoItemDetails'
 import SavedVideosRoute from './components/SavedVideosRoute/savedVideosRoute'
 import ProtectedRoute from './components/ProtectedRoute/protectedRoute'
+import NotFound from './components/NotFound/notFound'
 import './App.css'
 
 // Replace your cod<LoginPage />
@@ -66,6 +67,7 @@ class App extends Component {
               path="/videos/:id"
               component={VideoItemDetails}
             />
+            <NotFound />
           </Switch>
         </NxtWatch.Provider>
       </BrowserRouter>
