@@ -8,4 +8,5 @@ display: flex;
 flex-wrap: wrap;
 width: 80%;
 height: 75vh;
-overflow: scroll;`
+overflow: scroll;
+background-color: ${props => (props.colorChange ? '#0f0f0f' : '#f9f9f9')};`
