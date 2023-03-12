@@ -5,6 +5,8 @@ const NxtWatch = React.createContext({
   colorChange: () => {},
   optionType: 'Home',
   changeOption: () => {},
+  savedVideos: [],
+  saveVideo: () => {},
 })
 
 export default NxtWatch
