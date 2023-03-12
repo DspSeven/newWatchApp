@@ -18,6 +18,7 @@ class LoginPage extends Component {
     password: '',
     typeStatus: 'password',
     errorMsg: '',
+    showSubmitError: '',
   }
 
   // get username
@@ -42,6 +43,7 @@ class LoginPage extends Component {
 
   // success api
   successApi = jwtToken => {
+    console.log(jwtToken)
     Cookies.set('jwt_token', jwtToken, {expires: 30})
     const {history} = this.props
     history.replace('/')
@@ -49,7 +51,7 @@ class LoginPage extends Component {
 
   // failure api
   failureApi = errorMsg => {
-    this.setState({errorMsg})
+    this.setState({showSubmitError: true, errorMsg})
   }
 
   submitUserCredentials = async event => {
@@ -64,15 +66,14 @@ class LoginPage extends Component {
     const response = await fetch(url, options)
     const data = await response.json()
     console.log(data)
-    if (response) {
-      return this.successApi(data.jwt_token)
+    if (response.ok) {
+      this.successApi(data.jwt_token)
     }
-    return this.failureApi(data.error_msg)
+    this.failureApi(data.error_msg)
   }
 
   render() {
-    const {typeStatus, errorMsg} = this.state
-    console.log(errorMsg)
+    const {typeStatus, errorMsg, showSubmitError} = this.state
     const jwtToken = Cookies.get('jwt_token')
     const lightTheme =
       'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
@@ -122,7 +123,7 @@ class LoginPage extends Component {
                   </CustomLabel>
                 </CheckboxContainer>
                 <CustomButton type="submit">Login</CustomButton>
-                {errorMsg !== '' && (
+                {showSubmitError && (
                   <CustomParagraph>{errorMsg}</CustomParagraph>
                 )}
               </CustomContainer>
