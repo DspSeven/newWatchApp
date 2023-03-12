@@ -2,7 +2,7 @@ import {HiMoon} from 'react-icons/hi'
 import {FiSun} from 'react-icons/fi'
 import Popup from 'reactjs-popup'
 import Cookies from 'js-cookie'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import {
   HeaderContainer,
   ProfileInfo,
@@ -36,7 +36,11 @@ const HeaderPage = props => (
       }
       return (
         <HeaderContainer bgColor={toggleColor}>
-          <Image src={theme} alt="theme" />
+          <button type="button">
+            <Link to="/">
+              <Image src={theme} alt="website logo" />
+            </Link>
+          </button>
           <ProfileInfo>
             {toggleColor ? (
               <FiSun onClick={themeChange} className="sun-icon" />
@@ -57,7 +61,7 @@ const HeaderPage = props => (
             >
               {close => (
                 <PopupWindow>
-                  <PopupPara>Are you sure,you want to logout</PopupPara>
+                  <PopupPara>Are you sure, you want to logout</PopupPara>
                   <SubmitButtons>
                     <DualButton type="button" onClick={() => close()}>
                       Cancel
