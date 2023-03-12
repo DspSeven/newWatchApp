@@ -52,7 +52,8 @@ class LoginPage extends Component {
     this.setState({errorMsg})
   }
 
-  submitUserCredentials = async () => {
+  submitUserCredentials = async event => {
+    event.preventDefault()
     const {username, password} = this.state
     const userDetails = {username, password}
     const url = 'https://apis.ccbp.in/login'
@@ -64,9 +65,9 @@ class LoginPage extends Component {
     const data = await response.json()
     console.log(data)
     if (response) {
-      this.successApi(data.jwt_token)
+      return this.successApi(data.jwt_token)
     }
-    this.failureApi(data.error_msg)
+    return this.failureApi(data.error_msg)
   }
 
   render() {
@@ -86,9 +87,12 @@ class LoginPage extends Component {
           const {toggleColor} = value
           const theme = toggleColor ? darkTheme : lightTheme
           return (
-            <LoginContainer bgColor={toggleColor}>
+            <LoginContainer
+              bgColor={toggleColor}
+              onSubmit={this.submitUserCredentials}
+            >
               <CustomContainer>
-                <img src={theme} alt="website logo" />}
+                <img src={theme} alt="website logo" />
                 <CustomLabel htmlFor="username" label={toggleColor}>
                   USERNAME
                 </CustomLabel>
@@ -117,12 +121,7 @@ class LoginPage extends Component {
                     show password
                   </CustomLabel>
                 </CheckboxContainer>
-                <CustomButton
-                  type="button"
-                  onClick={this.submitUserCredentials}
-                >
-                  Login
-                </CustomButton>
+                <CustomButton type="submit">Login</CustomButton>
                 {errorMsg !== '' && (
                   <CustomParagraph>{errorMsg}</CustomParagraph>
                 )}
