@@ -7,12 +7,15 @@ import {
   Videos,
   UnorderedList,
   TrendUnorderedList,
+  TC,
 } from './styledComponents'
 
 import HeaderPage from '../HeaderPage/header'
 import FilterGroup from '../FilterGroup/filter'
 import TrendingVideos from '../TrendingVideos/trendingVideos'
 import FailureScenario from '../FailureScenario/failureApi'
+
+import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
 
 const trendingConstants = {
   success: 'SUCCESS',
@@ -125,13 +128,20 @@ class TrendingRoute extends Component {
 
   render() {
     return (
-      <div>
-        <HeaderPage />
-        <CombineContainer>
-          <FilterGroup />
-          <Videos>{this.startSwitch()}</Videos>
-        </CombineContainer>
-      </div>
+      <NxtWatch.Consumer>
+        {value => {
+          const {toggleColor} = value
+          return (
+            <TC colorChange={toggleColor} data-testid="trending">
+              <HeaderPage />
+              <CombineContainer>
+                <FilterGroup />
+                <Videos>{this.startSwitch()}</Videos>
+              </CombineContainer>
+            </TC>
+          )
+        }}
+      </NxtWatch.Consumer>
     )
   }
 }
