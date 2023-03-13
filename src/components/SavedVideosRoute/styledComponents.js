@@ -10,3 +10,6 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;`
+
+export const SV = Styled.div`
+background-color: ${props => (props.colorChange ? '#0f0f0f' : ' #f9f9f9')};`
