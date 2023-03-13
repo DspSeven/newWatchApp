@@ -66,7 +66,7 @@ class VideoItemDetails extends Component {
     const response = await fetch(videoItemDetailsApiUrl, options)
     const data = await response.json()
     console.log(data)
-    if (response) {
+    if (response.ok) {
       const updatedData = {
         description: data.video_details.description,
         id: data.video_details.id,
@@ -131,7 +131,15 @@ class VideoItemDetails extends Component {
     }
 
     const saveVideoInList = () => {
-      saveVideo({id, thumbnailUrl, name, viewCount, newDate})
+      saveVideo({
+        id,
+        thumbnailUrl,
+        name,
+        viewCount,
+        newDate,
+        publishedAt,
+        title,
+      })
       /*
       this.setState({savedVideos: {id, thumbnailUrl, name, viewCount, newDate}})
     */
@@ -189,9 +197,20 @@ class VideoItemDetails extends Component {
     )
   }
 
+  navToVideoItemDetails = () => {
+    this.getSpecificVideo()
+  }
+
   failureApi = () => {
     console.log('')
-    return <FailureScenario />
+    return (
+      <>
+        <FailureScenario />
+        <button type="button" onClick={this.navToVideoItemDetails}>
+          Retry
+        </button>
+      </>
+    )
   }
 
   renderLoader = () => {
