@@ -60,3 +60,8 @@ border: ${props => (props.confirm ? 0 : 1)}px solid ${props =>
 border-radius: 7px;
 padding: 10px;
 margin-right: ${props => (props.confirm ? null : 25)}px;`
+
+export const ThemeButton = Styled.button`
+width: 60px;
+background-color: transparent;
+border: 0px solid transparent;`
