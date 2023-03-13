@@ -46,7 +46,7 @@ height: 90vh;`
 
 export const UnOl = Styled.ul`
 width: 80%;
-background-color: ${props => (props.colorChange ? '#0f0f0f' : '#f9f9f9')}`
+background-color: ${props => (props.colorChange ? '#0f0f0f' : '#f9f9f9')};`
 
 export const HomeUnorderedList = Styled.ul`
 display: flex;
