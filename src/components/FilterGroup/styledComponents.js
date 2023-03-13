@@ -5,7 +5,7 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 align-items: center;
-width: 25%;
+width: 20%;
 height: ${props => (props.bgColor ? 90 : 85)}vh;
 overflow: ${props => (props.bgColor ? 'scroll' : 'hidden')};
 background-color: ${props => (props.bgColor ? '#000000' : '#ffffff')};`
