@@ -25,6 +25,7 @@ import {
   Container,
   Heading,
   Paragraph,
+  VD,
 } from './styledComponents'
 import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
 
@@ -155,37 +156,61 @@ class VideoItemDetails extends Component {
               width={`${73}vw`}
               height={`${450}px`}
             />
-            <h1>{title}</h1>
+            <p>{title}</p>
             <VideoInfo>
               <ViewsAndTimeDuration>
                 <p>{viewCount} views</p>
+                <p>{publishedAt}</p>
                 <p>{newDate} ago</p>
               </ViewsAndTimeDuration>
               <LDS>
                 <LikeContainer>
-                  <SpanContainer onClick={changeLikeStatus} one={likeStatus}>
+                  <SpanContainer one={likeStatus}>
                     <BiLike />
                   </SpanContainer>
-                  <LikeContent like={likeStatus}>Like</LikeContent>
+                  <LikeContent
+                    like={likeStatus}
+                    data-testid="theme"
+                    onClick={changeLikeStatus}
+                  >
+                    Like
+                  </LikeContent>
                 </LikeContainer>
                 <LikeContainer>
-                  <SpanThree onClick={changeDislikeStatus} two={disLikeStatus}>
+                  <SpanThree two={disLikeStatus}>
                     <BiDislike />
                   </SpanThree>
-                  <LikeContent like={disLikeStatus}>Dislike</LikeContent>
+                  <LikeContent
+                    like={disLikeStatus}
+                    data-testid="theme"
+                    onClick={changeDislikeStatus}
+                  >
+                    Dislike
+                  </LikeContent>
                 </LikeContainer>
                 <LikeContainer>
-                  <SpanTwo onClick={saveVideoInList} colorChange={playList}>
+                  <SpanTwo colorChange={playList}>
                     <RiPlayListAddFill />
                   </SpanTwo>
-                  <LikeContent like={playList}>Save</LikeContent>
+                  <LikeContent
+                    like={playList}
+                    data-testid="theme"
+                    onClick={saveVideoInList}
+                  >
+                    Save
+                  </LikeContent>
                 </LikeContainer>
               </LDS>
             </VideoInfo>
             <hr />
           </div>
           <VideoAdditionalInfo>
-            <img src={profileImageUrl} alt={title} height={60} width={60} />
+            <img
+              src={profileImageUrl}
+              alt="channel logo"
+              height={60}
+              width={60}
+            />
             <Container>
               <Heading>{name}</Heading>
               <Paragraph>{subscriberCount} subscribers</Paragraph>
@@ -236,15 +261,15 @@ class VideoItemDetails extends Component {
     return (
       <NxtWatch.Consumer>
         {value => {
-          const {saveVideo} = value
+          const {saveVideo, toggleColor} = value
           return (
-            <div>
+            <VD colorChange={toggleColor} data-testid="videoItemDetails">
               <HeaderPage />
               <CombineContainer>
                 <FilterGroup />
                 {this.startSwitch(saveVideo)}
               </CombineContainer>
-            </div>
+            </VD>
           )
         }}
       </NxtWatch.Consumer>
