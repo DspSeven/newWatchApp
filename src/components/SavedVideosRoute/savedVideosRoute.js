@@ -3,7 +3,7 @@ import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
 import FilterGroup from '../FilterGroup/filter'
 import HeaderPage from '../HeaderPage/header'
 import SavedVideosSection from '../SavedVideosSection/savedVideosSection'
-import {CombineContainer, NoRecords} from './styledComponents'
+import {CombineContainer, NoRecords, SV} from './styledComponents'
 
 const SavedVideosRoute = () => {
   const recordFound = savedVideos => {
@@ -40,9 +40,9 @@ const SavedVideosRoute = () => {
   return (
     <NxtWatch.Consumer>
       {value => {
-        const {savedVideos} = value
+        const {savedVideos, toggleColor} = value
         return (
-          <div>
+          <SV colorChange={toggleColor}>
             <HeaderPage />
             <CombineContainer>
               <FilterGroup />
@@ -50,7 +50,7 @@ const SavedVideosRoute = () => {
                 ? recordFound(savedVideos)
                 : noRecordFound()}
             </CombineContainer>
-          </div>
+          </SV>
         )
       }}
     </NxtWatch.Consumer>
