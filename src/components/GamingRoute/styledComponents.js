@@ -9,8 +9,11 @@ flex-direction: column;
 width: 80%;
 height: 75vh;
 overflow: scroll;
-background-color: ${props => (props.colorChange ? '#0f0f0f' : '#f9f9f9')};`
+`
 
 export const GC = Styled.ul`
 display: flex;
 flex-wrap: wrap;`
+
+export const GCC = Styled.div`
+background-color: ${props => (props.colorChanger ? '#0f0f0f' : '#f9f9f9')};`
