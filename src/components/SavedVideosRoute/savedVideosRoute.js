@@ -1,3 +1,4 @@
+import {RiPlayListAddLine} from 'react-icons/ri'
 import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
 import FilterGroup from '../FilterGroup/filter'
 import HeaderPage from '../HeaderPage/header'
@@ -8,11 +9,15 @@ const SavedVideosRoute = () => {
   const recordFound = savedVideos => {
     console.log('')
     return (
-      <div>
+      <ul>
+        <div>
+          <RiPlayListAddLine />
+          <h1>Saved Videos</h1>
+        </div>
         {savedVideos.map(svs => (
           <SavedVideosSection key={svs.id} savedVideosDetails={svs} />
         ))}
-      </div>
+      </ul>
     )
   }
 
@@ -27,7 +32,7 @@ const SavedVideosRoute = () => {
           height={`${350}px`}
           width={`${750}px`}
         />
-        <p>No saved videos found</p>
+        <h1>No saved videos found</h1>
         <p>You can save your videos while watching them</p>
       </NoRecords>
     )
