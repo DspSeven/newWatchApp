@@ -108,13 +108,11 @@ class FilterGroup extends Component {
                   />
                   <IconImage
                     src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
-                    alt="linked in"
+                    alt="linked in logo"
                   />
                 </IconImageContainer>
                 <IconHeading>
-                  Enjoy! Now to see your <br />
-                  channels and <br />
-                  recommendations
+                  Enjoy! Now to see your channels and recommendations!
                 </IconHeading>
               </ContactContainer>
             </FilterContainer>
