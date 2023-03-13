@@ -17,11 +17,12 @@ const TrendingVideos = props => {
   return (
     <Link to={`/videos/${id}`}>
       <TrendList>
-        <ThumbnailImage src={thumbnailUrl} alt="url" />
+        <ThumbnailImage src={thumbnailUrl} alt="video thumbnail" />
         <TrendingInfo>
           <Heading>{title}</Heading>
           <p>{name}</p>
           <p>{viewCount} views</p>
+          <p>{publishedAt}</p>
           <p>{newDate} ago</p>
         </TrendingInfo>
       </TrendList>
