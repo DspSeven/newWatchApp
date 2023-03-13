@@ -1,12 +1,13 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 
+import {SiYoutubegaming} from 'react-icons/si'
 import FilterGroup from '../FilterGroup/filter'
 import HeaderPage from '../HeaderPage/header'
 import GamingVideosSection from '../GamingVideosSection/gamingVideosSection'
 import FailureScenario from '../FailureScenario/failureApi'
 import RenderLoader from '../RenderLoader/loader'
-import {CombineContainer, UnorderedList} from './styledComponents'
+import {CombineContainer, UnorderedList, GC} from './styledComponents'
 
 import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
 
@@ -58,16 +59,33 @@ class GamingRoute extends Component {
     const {gamingVideosData} = this.state
     return (
       <UnorderedList colorChange={toggleColor}>
-        {gamingVideosData.map(data => (
-          <GamingVideosSection gd={data} key={data.id} />
-        ))}
+        <div>
+          <SiYoutubegaming />
+          <h1>Gaming</h1>
+        </div>
+        <GC>
+          {gamingVideosData.map(data => (
+            <GamingVideosSection gd={data} key={data.id} />
+          ))}
+        </GC>
       </UnorderedList>
     )
   }
 
+  navToTrendingAction = () => {
+    this.getGamingData()
+  }
+
   failureApi = () => {
     console.log('')
-    return <FailureScenario />
+    return (
+      <>
+        <FailureScenario />
+        <button type="button" onClick={this.navToGamingAction}>
+          Retry
+        </button>
+      </>
+    )
   }
 
   renderLoader = () => {
