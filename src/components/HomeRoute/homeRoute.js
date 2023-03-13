@@ -113,11 +113,11 @@ class HomeRoute extends Component {
           <HomeContainer homeColor={tc}>
             <HomeInfo>
               <img src={theme} alt="website logo" />
-              <h1>
+              <p>
                 Buy Nxt WatchPremium prepaid plans with
                 <br />
                 upi
-              </h1>
+              </p>
               <button type="button">GET IT NOW</button>
             </HomeInfo>
             <SpanElement onClick={this.closeInfo}>
