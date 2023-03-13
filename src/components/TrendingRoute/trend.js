@@ -92,10 +92,21 @@ class TrendingRoute extends Component {
     )
   }
 
+  navToTrendingAction = () => {
+    this.getTrendingVideos()
+  }
+
   // to be added in futher
   failureRoute = () => {
     console.log('')
-    return <FailureScenario />
+    return (
+      <>
+        <FailureScenario />
+        <button type="button" onClick={this.navToTrendingAction}>
+          Retry
+        </button>
+      </>
+    )
   }
 
   startSwitch = () => {
