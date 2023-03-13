@@ -13,6 +13,7 @@ import {
   PopupPara,
   SubmitButtons,
   DualButton,
+  ThemeButton,
 } from './styledComponents'
 import './header.css'
 import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
@@ -36,17 +37,17 @@ const HeaderPage = props => (
       }
       return (
         <HeaderContainer bgColor={toggleColor}>
-          <button type="button">
-            <Link to="/">
-              <Image src={theme} alt="website logo" />
-            </Link>
-          </button>
+          <Link to="/">
+            <Image src={theme} alt="website logo" />
+          </Link>
           <ProfileInfo>
-            {toggleColor ? (
-              <FiSun onClick={themeChange} className="sun-icon" />
-            ) : (
-              <HiMoon onClick={themeChange} className="moon-icon" />
-            )}
+            <ThemeButton type="button">
+              {toggleColor ? (
+                <FiSun onClick={themeChange} className="sun-icon" />
+              ) : (
+                <HiMoon onClick={themeChange} className="moon-icon" />
+              )}
+            </ThemeButton>
             <ProfileImage
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
               alt="profile"
