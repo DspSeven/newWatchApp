@@ -26,27 +26,27 @@ export const SpanContainer = Styled.span`
 align-self:center;
 padding-top: 5px;
 padding-right: 5px;
-color: ${props => (props.one ? '#4f46e5' : '#ffffff')};`
+color: ${props => (props.one ? '#2563eb' : '#64748b')};`
 
 export const SpanTwo = Styled.span`
 align-self:center;
 padding-top: 5px;
 padding-right: 5px;
-color: ${props => (props.colorChange ? '#4f46e5' : '#ffffff')};`
+color: ${props => (props.colorChange ? '#2563eb' : '#64748b')};`
 
 export const SpanThree = Styled.span`
 align-self:center;
 padding-top: 5px;
 padding-right: 5px;
-color: ${props => (props.two ? '#4f46e5' : '#ffffff')};`
+color: ${props => (props.two ? '#2563eb' : '#64748b')};`
 
 export const VideoAdditionalInfo = Styled.div`
 display: flex;
 align-items: center;
 line-height: 10px;`
 
-export const LikeContent = Styled.p`
-color: ${props => (props.like ? '#4f46e5' : '#ffffff')};`
+export const LikeContent = Styled.button`
+color: ${props => (props.like ? '#2563eb' : '#64748b')};`
 
 export const SpecificContainer = Styled.div`
 width: 80%;
@@ -57,8 +57,11 @@ export const Container = Styled.div`
 font-size: 20px;
 padding-left: 50px;`
 
-export const Heading = Styled.h1`
+export const Heading = Styled.p`
 font-size: 20px;
 `
 export const Paragraph = Styled.p`
 font-size: 15px;`
+
+export const VD = Styled.div`
+background-color: ${props => (props.colorChange ? '#0f0f0f' : '#f9f9f9')};`
