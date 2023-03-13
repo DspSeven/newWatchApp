@@ -1,6 +1,6 @@
 import Styled from 'styled-components'
 
-export const SvsContainer = Styled.div`
+export const SvsContainer = Styled.li`
 display: flex;
 justify-content: space-between;
 overflow: scroll;
