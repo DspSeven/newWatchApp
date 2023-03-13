@@ -17,5 +17,5 @@ export const TrendingInfo = Styled.div`
 padding-left: 25px;
 width: 500px;`
 
-export const Heading = Styled.h1`
+export const Heading = Styled.p`
 font-size: 15px;`
