@@ -7,7 +7,7 @@ import HeaderPage from '../HeaderPage/header'
 import GamingVideosSection from '../GamingVideosSection/gamingVideosSection'
 import FailureScenario from '../FailureScenario/failureApi'
 import RenderLoader from '../RenderLoader/loader'
-import {CombineContainer, UnorderedList, GC} from './styledComponents'
+import {CombineContainer, UnorderedList, GC, GCC} from './styledComponents'
 
 import NxtWatch from '../../context/NxtWatch/nxtWatchContext'
 
@@ -55,10 +55,10 @@ class GamingRoute extends Component {
   }
 
   // success api
-  successApi = toggleColor => {
+  successApi = () => {
     const {gamingVideosData} = this.state
     return (
-      <UnorderedList colorChange={toggleColor}>
+      <UnorderedList>
         <div>
           <SiYoutubegaming />
           <h1>Gaming</h1>
@@ -93,11 +93,11 @@ class GamingRoute extends Component {
     return <RenderLoader />
   }
 
-  startSwitch = toggleColor => {
+  startSwitch = () => {
     const {gamingStatus} = this.state
     switch (gamingStatus) {
       case gameConstants.success:
-        return this.successApi(toggleColor)
+        return this.successApi()
       case gameConstants.failure:
         return this.failureApi()
       case gameConstants.inProgress:
@@ -113,13 +113,13 @@ class GamingRoute extends Component {
         {value => {
           const {toggleColor} = value
           return (
-            <div data-testid="gaming">
+            <GCC data-testid="gaming" colorChanger={toggleColor}>
               <HeaderPage />
               <CombineContainer>
                 <FilterGroup />
                 {this.startSwitch(toggleColor)}
               </CombineContainer>
-            </div>
+            </GCC>
           )
         }}
       </NxtWatch.Consumer>
